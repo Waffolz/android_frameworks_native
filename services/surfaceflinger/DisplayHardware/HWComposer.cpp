@@ -1282,17 +1282,17 @@ void HWComposer::dump(String8& result) const {
 
                 if ( hwcApiVersion(mHwc) == 0)
                 {
-                    hwc_layer_list_t *list = (hwc_layer_list_t*) disp.list;
+                    hwc_layer_1_t *list = (hwc_layer_1_t*) disp.list;
                     result.appendFormat(
                             "  numHwLayers=%u, flags=%08x\n",
-                            list->numHwLayers, list->flags);
+                            disp.list->numHwLayers, disp.list->flags);
 
                     result.append(
                             "    type    |  handle  |   hints  |   flags  | tr | blend |  format  |          source crop            |           frame           name \n"
                             "------------+----------+----------+----------+----+-------+----------+---------------------------------+--------------------------------\n");
                     //      " __________ | ________ | ________ | ________ | __ | _____ | ________ | [_____._,_____._,_____._,_____._] | [_____,_____,_____,_____]
-                    for (size_t i=0 ; i<list->numHwLayers ; i++) {
-                        const hwc_layer_t&l = list->hwLayers[i];
+                    for (size_t i=0 ; i<disp.list->numHwLayers ; i++) {
+                        const hwc_layer_1&l = disp.list->hwLayers[i];
                         int32_t format = -1;
                         String8 name("unknown");
 
